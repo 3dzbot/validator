@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Validator v0.1</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./assets/validator.css">
+  <script src="./assets/validator.js"></script>
+</head>
+<body>
+  <section>
+    <form id="myform">
+      <label for="email">email </label>
+      <input type="text" name="email" id="email">
+      <label for="phone">phone</label>
+      <input type="text" name="phone" id="phone">
+      <br>
+      <button type="submit">Submit!</button>
+      <button type="reset">Reset</button>
+    </form>
+  </section>
+ 
+ <script>
+   const valid = new Validator(
+     {
+      id: 'myform',
+      pattern: {
+        phone: /^\+380\w{9}$/
+      },
+      //какие  методы применяем для отдельных инпутов
+      method: {
+        //'email' - input.id
+        'email': [
+          ['notEmpty'],
+          //use pattern.email
+          ['pattern', 'email']
+        ],
+        'phone': [
+          ['notEmpty'],
+          ['pattern', 'phone']
+        ]
+      }
+    }
+   );
+ </script>
+  
+</body>
+</html>
